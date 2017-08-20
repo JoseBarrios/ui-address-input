@@ -1,0 +1,35 @@
+{
+  "name": "@josebarrios/ui-address-input",
+  "version": "0.1.0",
+  "description": "A custom element for address inputs",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/yarn/bin/yarn upgrade; ./node_modules/webpack/bin/webpack.js",
+    "test": "./node_modules/http-server/bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseBarrios/ui-address-input.git"
+  },
+  "keywords": [
+    "custom",
+    "element",
+    "class"
+  ],
+  "browser": "browser.js",
+  "author": "JoseBarrios",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/JoseBarrios/ui-address-input/issues"
+  },
+  "homepage": "https://github.com/JoseBarrios/ui-address-input#readme",
+  "devDependencies": {
+    "http-server": "^0.10.0",
+    "mocha": "^3.4.2",
+    "webpack": "^3.3.0",
+    "yarn": "^0.27.5"
+  },
+  "dependencies": {
+    "@josebarrios/postal-address": "^0.1.7"
+  }
+}
