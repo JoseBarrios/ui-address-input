@@ -13,40 +13,26 @@ class UIAddressInput extends HTMLElement{
 		this.shadowRoot.appendChild(view);
 		this.scriptLoaded = false;
 		this.postalAddress = new PostalAddress();
-		this.updateEvent = new Event('update');
 
-		console.log(this.postalAddress)
+
+		this.connected = false;
+		this.updateEvent = new Event('update');
 	}
 
 
  connectedCallback() {
-		this.$input = this.shadowRoot.querySelector('input');
-		this.$input.addEventListener('blur', e => {this.updated(e)});
-		this.$input.addEventListener('focus', e => {this.geolocate(e)});
+	 this.connected = true;
+	 this.$input = this.shadowRoot.querySelector('input');
+
+	 this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
+	 // When the user selects an address from the dropdown, populate the address fields in the form.
+	 this.autocomplete.addListener('place_changed', e=> {this.setAddress(e)});
+
+	 this.$input.addEventListener('blur', e => {this.updated(e)});
+	 this.$input.addEventListener('focus', e => {this.geolocate(e)});
   }
 
-	loadScript( url, callback ) {
-		var script = document.createElement( "script" )
-		script.type = "text/javascript";
-		if(script.readyState) {  //IE
-			script.onreadystatechange = function() {
-				if ( script.readyState === "loaded" || script.readyState === "complete" ) {
-					script.onreadystatechange = null;
-					callback();
-				}
-			};
-		} else {  //Others
-			script.onload = function() {
-				callback();
-			};
-		}
-
-		script.src = url;
-		document.getElementsByTagName( "head" )[0].appendChild( script );
-	}
-
-
-	fillInAddress(e){
+	setAddress(e){
 		// Get the place details from the autocomplete object.
 		var place = this.autocomplete.getPlace();
 		place.address_components.forEach(item => {
@@ -70,7 +56,7 @@ class UIAddressInput extends HTMLElement{
 
 	// Bias the autocomplete object to the user's geographical location,
 	// as supplied by the browser's 'navigator.geolocation' object.
-  geolocate() {
+	geolocate() {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((position) => {
 				var geolocation = {
@@ -86,28 +72,17 @@ class UIAddressInput extends HTMLElement{
 		}
 	}
 
-	updated(e){
-		this.value = e.target.value;
+	updated(e){ this.value = e.target.value; }
+
+  attributeChangedCallback(attrName, oldVal, newVal) {
+		console.log(attrName, oldVal, newVal)
+
 	}
 
   disconnectedCallback() {
     console.log('disconnected');
   }
 
-  attributeChangedCallback(attrName, oldVal, newVal) {
-		console.log(attrName, oldVal, newVal);
-		if(attrName === 'key' && this.scriptLoaded === false){
-			let url = `https://maps.googleapis.com/maps/api/js?key=${newVal}&libraries=places`;
-			this.loadScript(url, e => {
-				this.scriptLoaded = true;
-				// Create the autocomplete object, restricting the search to geographical location types.
-				this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
-				// When the user selects an address from the dropdown, populate the address fields in the form.
-				this.autocomplete.addListener('place_changed', e=> {this.fillInAddress(e)});
-			})
-		}
-
-	}
 
 	get shadowRoot(){return this._shadowRoot;}
 	set shadowRoot(value){ this._shadowRoot = value}
