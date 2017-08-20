@@ -13,6 +13,7 @@ class UIAddressInput extends HTMLElement{
 		this.shadowRoot.appendChild(view);
 		this.scriptLoaded = false;
 		this.postalAddress = new PostalAddress();
+		this.updateEvent = new Event('update');
 
 		console.log(this.postalAddress)
 	}
@@ -64,6 +65,7 @@ class UIAddressInput extends HTMLElement{
 		this.postalAddress.disambiguatingDescription = `${lat},${lng}`;
 
 		this.value = PostalAddress.assignedProperties(this.postalAddress)
+		this.dispatchEvent(this.updateEvent);
 	}
 
 	// Bias the autocomplete object to the user's geographical location,
@@ -85,7 +87,6 @@ class UIAddressInput extends HTMLElement{
 	}
 
 	updated(e){
-		console.log(e.target.value)
 		this.value = e.target.value;
 	}
 
@@ -105,6 +106,7 @@ class UIAddressInput extends HTMLElement{
 				this.autocomplete.addListener('place_changed', e=> {this.fillInAddress(e)});
 			})
 		}
+
 	}
 
 	get shadowRoot(){return this._shadowRoot;}

@@ -6,3 +6,10 @@
 		<ui-address-input key="AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc"></ui-address-input>
   </div>
 </body>
+
+<script>
+	let addressInput = document.querySelector('ui-address-input');
+	addressInput.addEventListener('update', function(e){
+		console.log('TEST UPDATED EVENT', e.target.value)
+	})
+</script>
