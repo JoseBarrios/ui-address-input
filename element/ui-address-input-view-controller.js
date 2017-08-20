@@ -50,7 +50,7 @@ class UIAddressInput extends HTMLElement{
 		// Get the place details from the autocomplete object.
 		var place = this.autocomplete.getPlace();
 		place.address_components.forEach(item => {
-			if(item.types.includes('country')){ this.postalAddress.addressCountry = item.short_name }
+			if(item.types.includes('country')){ this.postalAddress.addressCountry = item.long_name }
 			else if(item.types.includes('locality')){ this.postalAddress.addressLocality = item.short_name }
 			else if(item.types.includes("administrative_area_level_1")){ this.postalAddress.addressRegion = item.short_name }
 			else if(item.types.includes("postal_code")){ this.postalAddress.postalCode = item.short_name }
