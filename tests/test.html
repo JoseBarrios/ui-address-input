@@ -2,18 +2,21 @@
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc&libraries=places' async></script>
 
 <link rel='import' href='../element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-organization-card/element/index.html'>
 
 <body>
   <div style="width:50%;background-color:white">
 		<ui-address-input></ui-address-input>
-		<ui-address-input></ui-address-input>
-		<ui-address-input></ui-address-input>
+		<ui-organization-card></ui-organization-card>
   </div>
 </body>
 
 <script>
+	let organizationCard = document.querySelector('ui-organization-card');
 	let addressInput = document.querySelector('ui-address-input');
-	addressInput.addEventListener('input', function(e){
+
+	addressInput.addEventListener('update', function(e){
 		console.log('TEST UPDATED EVENT', e.detail.value)
+		organizationCard.address = e.detail.value;
 	})
 </script>

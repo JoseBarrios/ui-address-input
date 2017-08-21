@@ -14,6 +14,12 @@
   dependencies:
     "@josebarrios/thing" "^0.3.19"
 
+"@josebarrios/organization@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.npmjs.org/@josebarrios/organization/-/organization-1.1.7.tgz#2ddcaaaf1e11b60d015bd9b442b0516e161f5a03"
+  dependencies:
+    "@josebarrios/thing" "^0.3.10"
+
 "@josebarrios/postal-address@^0.1.7":
   version "0.1.7"
   resolved "https://registry.npmjs.org/@josebarrios/postal-address/-/postal-address-0.1.7.tgz#1913cde10e8dc787cdd3b04c501611eec54e6fc9"
@@ -26,11 +32,18 @@
   dependencies:
     "@josebarrios/intangible" "^0.1.1"
 
-"@josebarrios/thing@^0.3.19":
+"@josebarrios/thing@^0.3.10", "@josebarrios/thing@^0.3.19":
   version "0.3.32"
   resolved "https://registry.npmjs.org/@josebarrios/thing/-/thing-0.3.32.tgz#663f987ac24affdc45f8f2ba02da61635b1779bb"
   dependencies:
     lodash "^4.17.4"
+
+"@josebarrios/ui-organization-card@^0.2.4":
+  version "0.2.6"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-organization-card/-/ui-organization-card-0.2.6.tgz#ac1bc66febf5c6780fad0bd7feba543f48ff2544"
+  dependencies:
+    "@josebarrios/organization" "^1.1.7"
+    "@josebarrios/postal-address" "^0.1.7"
 
 abbrev@1:
   version "1.1.0"
@@ -2159,8 +2172,8 @@ source-list-map@^2.0.0:
   resolved "https://registry.npmjs.org/source-list-map/-/source-list-map-2.0.0.tgz#aaa47403f7b245a92fbc97ea08f250d6087ed085"
 
 source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1, source-map@~0.5.3:
-  version "0.5.6"
-  resolved "https://registry.npmjs.org/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
+  version "0.5.7"
+  resolved "https://registry.npmjs.org/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
 spdx-correct@~1.0.0:
   version "1.0.2"
