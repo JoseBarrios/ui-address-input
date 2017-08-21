@@ -16,7 +16,7 @@ class UIAddressInput extends HTMLElement{
 
 
 		this.connected = false;
-		this.updateEvent = new Event('update');
+		this.defaultEventName = 'input'
 	}
 
 
@@ -72,11 +72,13 @@ class UIAddressInput extends HTMLElement{
 		}
 	}
 
-	updated(e){ this.value = e.target.value; }
+	updated(e){
+		this.value = e.target.value;
+	}
 
   attributeChangedCallback(attrName, oldVal, newVal) {
 		console.log(attrName, oldVal, newVal)
-
+		this.dispatchEvent(new CustomEvent(this.defaultEventName, {detail: {value: this.value}, bubbles:false}));
 	}
 
   disconnectedCallback() {
@@ -88,7 +90,9 @@ class UIAddressInput extends HTMLElement{
 	set shadowRoot(value){ this._shadowRoot = value}
 
 	get value(){return JSON.parse(this.getAttribute('value'));}
-	set value(value){ this.setAttribute('value', JSON.stringify(value))}
+	set value(value){
+		this.setAttribute('value', JSON.stringify(value));
+	}
 }
 
 window.customElements.define('ui-address-input', UIAddressInput);
