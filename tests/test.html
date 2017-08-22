@@ -10,7 +10,7 @@
 <body>
 	<h1>ADDRESS INPUT </h1>
   <div style="width:50%;background-color:white">
-		<ui-address-input></ui-address-input>
+		<ui-address-input placeholder="HELLO WORLD"></ui-address-input>
 		<!--<ui-organization-card></ui-organization-card>-->
 		<!--<ui-job-posting></ui-job-posting>-->
 		<!--<ui-job-posting-form></ui-job-posting-form>-->
@@ -19,6 +19,7 @@
 
 <script>
 let addressInput = document.querySelector('ui-address-input');
+addressInput.placeholder = 'DYNAMIC';
 //let organizationCard = document.querySelector('ui-organization-card');
 //let jobPosting = document.querySelector('ui-job-posting');
 //let jobPostingForm = document.querySelector('ui-job-posting-form');
