@@ -26,7 +26,7 @@ class UIAddressInput extends HTMLElement{
 	 // When the user selects an address from the dropdown, populate the address fields in the form.
 	 this.autocomplete.addListener('place_changed', e=> {this.setAddress()});
 
-	 this.$input.addEventListener('focus', e => {this.geolocate(e)});
+	 //this.$input.addEventListener('focus', e => {this.geolocate(e)});
   }
 
 	// Bias the autocomplete object to the user's geographical location,
