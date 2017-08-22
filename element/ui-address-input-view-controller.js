@@ -9,18 +9,23 @@ class UIAddressInput extends HTMLElement{
     super();
 		this.model = new PostalAddress();
 		const view = document.importNode(uiAddressInputTemplate.content, true);
-		this.shadowRoot = this.attachShadow({mode: 'open'});
-		this.shadowRoot.appendChild(view);
-		this.scriptLoaded = false;
+
+		//SHADOW ROOT
+		//this.shadowRoot = this.attachShadow({mode: 'open'});
+		//this.shadowRoot.appendChild(view);
+
+		this.appendChild(view);
 
 		this.connected = false;
-		this.defaultEventName = 'update'
 	}
 
 
  connectedCallback() {
 	 this.connected = true;
-	 this.$input = this.shadowRoot.querySelector('input');
+	 this.$input = this.querySelector('input');
+
+	 //SHADOW ROOT
+	 //this.$input = this.shadowRoot.querySelector('input');
 
 	 this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
 	 // When the user selects an address from the dropdown, populate the address fields in the form.
