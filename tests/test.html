@@ -12,11 +12,20 @@
 </body>
 
 <script>
-	let organizationCard = document.querySelector('ui-organization-card');
-	let addressInput = document.querySelector('ui-address-input');
 
-	addressInput.addEventListener('update', function(e){
-		console.log('TEST UPDATED EVENT', e.detail.value)
-		organizationCard.address = e.detail.value;
-	})
+let addressInput = document.querySelector('ui-address-input');
+let organizationCard = document.querySelector('ui-organization-card');
+
+let model = {
+	"addressLocality" : "Victoria",
+	"addressRegion" : "BC"
+}
+
+//addressInput.setAttribute('value', JSON.stringify(model))
+//addressInput.value = model;
+
+addressInput.addEventListener('update', function(e){
+	console.log('TEST UPDATED EVENT', e.detail.value)
+	organizationCard.address = e.detail.value;
+})
 </script>

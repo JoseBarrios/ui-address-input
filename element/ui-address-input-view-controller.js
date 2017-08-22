@@ -3,7 +3,7 @@ const uiAddressInputTemplate = uiAddressInputDocument.ownerDocument.querySelecto
 
 class UIAddressInput extends HTMLElement{
 
-	static get observedAttributes(){ return ['value', 'key']; }
+	static get observedAttributes(){ return ['value']; }
 
   constructor(model){
     super();
@@ -24,32 +24,10 @@ class UIAddressInput extends HTMLElement{
 
 	 this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
 	 // When the user selects an address from the dropdown, populate the address fields in the form.
-	 this.autocomplete.addListener('place_changed', e=> {this.setAddress(e)});
+	 this.autocomplete.addListener('place_changed', e=> {this.setAddress()});
 
 	 this.$input.addEventListener('focus', e => {this.geolocate(e)});
-	 //this.$input.addEventListener('blur', e => {this.updated(e)});
   }
-
-	setAddress(e){
-		// Get the place details from the autocomplete object.
-		var place = this.autocomplete.getPlace();
-		place.address_components.forEach(item => {
-			if(item.types.includes('country')){ this.model.addressCountry = item.long_name }
-			else if(item.types.includes('locality')){ this.model.addressLocality = item.long_name }
-			else if(item.types.includes("administrative_area_level_1")){ this.model.addressRegion = item.short_name }
-			else if(item.types.includes("postal_code")){ this.model.postalCode = item.short_name }
-		})
-
-		this.model.streetAddress = place.name;
-		this.model.identifier = place.place_id;
-		this.model.description = place.formatted_address;
-
-		let lat = place.geometry.location.lat();
-		let lng = place.geometry.location.lng();
-		this.model.disambiguatingDescription = `${lat},${lng}`;
-
-		this.value = PostalAddress.assignedProperties(this.model)
-	}
 
 	// Bias the autocomplete object to the user's geographical location,
 	// as supplied by the browser's 'navigator.geolocation' object.
@@ -69,11 +47,42 @@ class UIAddressInput extends HTMLElement{
 		}
 	}
 
-	updated(e){
-		this.value = e.target.value;
+	setAddress(e){
+		// Get the place details from the autocomplete object.
+		var place = this.autocomplete.getPlace();
+		let addressModel = {};
+		place.address_components.forEach(item => {
+			if(item.types.includes('country')){ addressModel.addressCountry = item.long_name }
+			if(item.types.includes('locality')){ addressModel.addressLocality = item.long_name }
+			if(item.types.includes("administrative_area_level_1")){ addressModel.addressRegion = item.short_name }
+			if(item.types.includes("postal_code")){ addressModel.postalCode = item.short_name }
+		})
+		//LAT LONG
+		let lat = place.geometry.location.lat();
+		let lng = place.geometry.location.lng();
+		addressModel.disambiguatingDescription = `${lat},${lng}`;
+		//Send to value, so it can handle it
+		this.value = addressModel;
 	}
 
   attributeChangedCallback(attrName, oldVal, newVal) {
+		switch(attrName){
+			case 'value':
+				//Wait until the fucking Google API is loaded
+				function isGoogleAPILoaded(){
+					//Check if API is loaded
+					if(google){ this.value = JSON.parse(newVal); }
+					//Try again next chance you get
+					else { requestAnimationFrame(isGoogleAPILoaded.bind(this)); }
+				}
+				requestAnimationFrame(isGoogleAPILoaded.bind(this));
+				break;
+			default:
+				console.warn(`Attribute '${attrName}' is not handled, change that.`)
+		}
+	}
+
+	_updateEvent(){
 		this.dispatchEvent(new CustomEvent(this.defaultEventName, {detail: {value: this.value}, bubbles:false}));
 	}
 
@@ -88,7 +97,15 @@ class UIAddressInput extends HTMLElement{
 	get value(){return PostalAddress.assignedProperties(this.model);}
 	set value(value){
 		this.model = new PostalAddress(value);
-		this.setAttribute('value', JSON.stringify(PostalAddress.assignedProperties(this.model)));
+
+		//This allows for the address to be set programmatically
+		//by calling addressInput = model;
+		if(this.getAttribute('value') !== JSON.stringify(value)){
+			this.setAttribute('value', JSON.stringify(value))
+			this.$input.value = `${value.addressLocality}, ${value.addressRegion}`
+		}
+
+		this._updateEvent();
 	}
 }
 
