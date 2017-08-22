@@ -25,9 +25,9 @@ class UIAddressInput extends HTMLElement{
 	 this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
 	 // When the user selects an address from the dropdown, populate the address fields in the form.
 	 this.autocomplete.addListener('place_changed', e=> {this.setAddress()});
-
 	 //this.$input.addEventListener('focus', e => {this.geolocate(e)});
   }
+
 
 	// Bias the autocomplete object to the user's geographical location,
 	// as supplied by the browser's 'navigator.geolocation' object.
@@ -69,26 +69,30 @@ class UIAddressInput extends HTMLElement{
 		switch(attrName){
 			case 'value':
 				//Wait until the fucking Google API is loaded
-				function isGoogleAPILoaded(){
-					//Check if API is loaded
-					if(google){ this.value = JSON.parse(newVal); }
-					//Try again next chance you get
-					else { requestAnimationFrame(isGoogleAPILoaded.bind(this)); }
+				let waitForAPIToLoad = () => {
+					checkAPI();
 				}
-				requestAnimationFrame(isGoogleAPILoaded.bind(this));
+				let updateModel = () => {
+					this.value = JSON.parse(newVal);
+					this._updateEvent();
+				}
+				let checkAPI = () => {
+					//Check if API is loaded
+					if(google){ updateModel(); }
+					//Try again next chance you get
+					else{ requestAnimationFrame(waitForAPIToLoad); }
+				}
+				checkAPI();
 				break;
+
 			default:
 				console.warn(`Attribute '${attrName}' is not handled, change that.`)
 		}
 	}
 
 	_updateEvent(){
-		this.dispatchEvent(new CustomEvent(this.defaultEventName, {detail: {value: this.value}, bubbles:false}));
+		this.dispatchEvent(new CustomEvent('update', {detail: this.value, bubbles:false }));
 	}
-
-  disconnectedCallback() {
-    console.log('disconnected');
-  }
 
 
 	get shadowRoot(){return this._shadowRoot;}
@@ -97,16 +101,20 @@ class UIAddressInput extends HTMLElement{
 	get value(){return PostalAddress.assignedProperties(this.model);}
 	set value(value){
 		this.model = new PostalAddress(value);
-
-		//This allows for the address to be set programmatically
-		//by calling addressInput = model;
+		//This allows for the address to be set programmatically by calling addressInput = model;
 		if(this.getAttribute('value') !== JSON.stringify(value)){
 			this.setAttribute('value', JSON.stringify(value))
-			this.$input.value = `${value.addressLocality}, ${value.addressRegion}`
+			if(!this.$input.value){
+				let city = value.addressLocality;
+				let region = value.addressRegion;
+				this.$input.value = `${city}, ${region}`
+			}
 		}
-
-		this._updateEvent();
 	}
+
+  disconnectedCallback() {
+    console.log('disconnected');
+  }
 }
 
 window.customElements.define('ui-address-input', UIAddressInput);

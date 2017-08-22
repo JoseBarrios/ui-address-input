@@ -2,30 +2,36 @@
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCYa2I7Yl5A1pz1QptlJsgxEHy00xGDkzc&libraries=places' async></script>
 
 <link rel='import' href='../element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-array-input/element/index.html'>
 <link rel='import' href='../node_modules/@josebarrios/ui-organization-card/element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-job-posting/element/index.html'>
+<link rel='import' href='../node_modules/@josebarrios/ui-job-posting-form/element/index.html'>
 
 <body>
+	<h1>ADDRESS INPUT </h1>
   <div style="width:50%;background-color:white">
 		<ui-address-input></ui-address-input>
-		<ui-organization-card></ui-organization-card>
+		<!--<ui-organization-card></ui-organization-card>-->
+		<!--<ui-job-posting></ui-job-posting>-->
+		<!--<ui-job-posting-form></ui-job-posting-form>-->
   </div>
 </body>
 
 <script>
-
 let addressInput = document.querySelector('ui-address-input');
-let organizationCard = document.querySelector('ui-organization-card');
+//let organizationCard = document.querySelector('ui-organization-card');
+//let jobPosting = document.querySelector('ui-job-posting');
+//let jobPostingForm = document.querySelector('ui-job-posting-form');
+//console.log(jobPostingForm)
 
-let model = {
-	"addressLocality" : "Victoria",
-	"addressRegion" : "BC"
-}
-
+//let model = { "addressLocality" : "Victoria", "addressRegion" : "BC" }
 //addressInput.setAttribute('value', JSON.stringify(model))
 //addressInput.value = model;
 
 addressInput.addEventListener('update', function(e){
-	console.log('TEST UPDATED EVENT', e.detail.value)
-	organizationCard.address = e.detail.value;
+	console.log('TEST UPDATED EVENT', e.detail)
+	//organizationCard.address = e.detail.value;
+	//jobPosting.hiringOrganization = {"address":e.detail};
+	//jobPostingForm...
 })
 </script>

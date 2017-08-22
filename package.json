@@ -24,13 +24,16 @@
   },
   "homepage": "https://github.com/JoseBarrios/ui-address-input#readme",
   "devDependencies": {
+    "@josebarrios/ui-array-input": "^0.1.29",
+    "@josebarrios/ui-job-posting": "^0.1.33",
+    "@josebarrios/ui-job-posting-form": "^0.1.1",
+    "@josebarrios/ui-organization-card": "^0.2.6",
     "http-server": "^0.10.0",
     "mocha": "^3.4.2",
     "webpack": "^3.3.0",
     "yarn": "^0.27.5"
   },
   "dependencies": {
-    "@josebarrios/postal-address": "^0.1.7",
-    "@josebarrios/ui-organization-card": "^0.2.4"
+    "@josebarrios/postal-address": "^0.1.7"
   }
 }

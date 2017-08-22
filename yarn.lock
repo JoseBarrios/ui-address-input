@@ -8,11 +8,17 @@
   dependencies:
     "@josebarrios/structured-value" "^0.1.1"
 
-"@josebarrios/intangible@^0.1.1":
+"@josebarrios/intangible@^0.1.1", "@josebarrios/intangible@^0.1.2":
   version "0.1.2"
   resolved "https://registry.npmjs.org/@josebarrios/intangible/-/intangible-0.1.2.tgz#1c8f9f726fd39bc72b4796e76dceefa1b70af92e"
   dependencies:
     "@josebarrios/thing" "^0.3.19"
+
+"@josebarrios/job-posting@^0.2.0", "@josebarrios/job-posting@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/@josebarrios/job-posting/-/job-posting-0.2.1.tgz#5d6a7f5200a9b509c055b1ebeaa8e15df67fdbe1"
+  dependencies:
+    "@josebarrios/intangible" "^0.1.2"
 
 "@josebarrios/organization@^1.1.7":
   version "1.1.7"
@@ -38,7 +44,27 @@
   dependencies:
     lodash "^4.17.4"
 
-"@josebarrios/ui-organization-card@^0.2.4":
+"@josebarrios/ui-array-input@^0.1.29":
+  version "0.1.30"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-array-input/-/ui-array-input-0.1.30.tgz#d9451f6d4ae1c427dd0f768d9332f2d08eed7f72"
+
+"@josebarrios/ui-job-posting-form@^0.1.1":
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting-form/-/ui-job-posting-form-0.1.4.tgz#4638954e9ed24b0a615b412320e9a26d42576e92"
+  dependencies:
+    "@josebarrios/job-posting" "^0.2.0"
+    "@josebarrios/organization" "^1.1.7"
+    "@josebarrios/postal-address" "^0.1.7"
+
+"@josebarrios/ui-job-posting@^0.1.33":
+  version "0.1.35"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting/-/ui-job-posting-0.1.35.tgz#f9bcc984b3423e7fe2e41c0ab1d237b607e6e432"
+  dependencies:
+    "@josebarrios/job-posting" "^0.2.1"
+    "@josebarrios/organization" "^1.1.7"
+    "@josebarrios/postal-address" "^0.1.7"
+
+"@josebarrios/ui-organization-card@^0.2.6":
   version "0.2.6"
   resolved "https://registry.npmjs.org/@josebarrios/ui-organization-card/-/ui-organization-card-0.2.6.tgz#ac1bc66febf5c6780fad0bd7feba543f48ff2544"
   dependencies:
