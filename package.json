@@ -1,6 +1,6 @@
 {
   "name": "@josebarrios/ui-address-input",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A custom element for address inputs",
   "main": "index.js",
   "scripts": {
