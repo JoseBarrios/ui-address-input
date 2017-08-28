@@ -14,9 +14,9 @@
   dependencies:
     "@josebarrios/thing" "^0.3.19"
 
-"@josebarrios/job-posting@^0.2.0", "@josebarrios/job-posting@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/@josebarrios/job-posting/-/job-posting-0.2.1.tgz#5d6a7f5200a9b509c055b1ebeaa8e15df67fdbe1"
+"@josebarrios/job-posting@^0.2.0", "@josebarrios/job-posting@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.npmjs.org/@josebarrios/job-posting/-/job-posting-0.2.8.tgz#aaffa22e86951ccf336ea5b0582afd62e5fd47af"
   dependencies:
     "@josebarrios/intangible" "^0.1.2"
 
@@ -45,28 +45,33 @@
     lodash "^4.17.4"
 
 "@josebarrios/ui-array-input@^0.1.29":
-  version "0.1.30"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-array-input/-/ui-array-input-0.1.30.tgz#d9451f6d4ae1c427dd0f768d9332f2d08eed7f72"
+  version "0.1.37"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-array-input/-/ui-array-input-0.1.37.tgz#8a4ec39565ee76d5f32cc228da097a440ea17e22"
+
+"@josebarrios/ui-image-input@^0.1.4":
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-image-input/-/ui-image-input-0.1.7.tgz#6542ce6282cc23c58b525d8b1b14c358f3ba9489"
 
 "@josebarrios/ui-job-posting-form@^0.1.1":
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting-form/-/ui-job-posting-form-0.1.4.tgz#4638954e9ed24b0a615b412320e9a26d42576e92"
+  version "0.1.6"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting-form/-/ui-job-posting-form-0.1.6.tgz#e8b24c08e3d263dfe9c339c3634fd697e60df19a"
   dependencies:
     "@josebarrios/job-posting" "^0.2.0"
     "@josebarrios/organization" "^1.1.7"
     "@josebarrios/postal-address" "^0.1.7"
+    "@josebarrios/ui-image-input" "^0.1.4"
 
 "@josebarrios/ui-job-posting@^0.1.33":
-  version "0.1.35"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting/-/ui-job-posting-0.1.35.tgz#f9bcc984b3423e7fe2e41c0ab1d237b607e6e432"
+  version "0.1.51"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-job-posting/-/ui-job-posting-0.1.51.tgz#ed7ed60bc2b08bc3c848a9d5885e0a83311d777d"
   dependencies:
-    "@josebarrios/job-posting" "^0.2.1"
+    "@josebarrios/job-posting" "^0.2.8"
     "@josebarrios/organization" "^1.1.7"
     "@josebarrios/postal-address" "^0.1.7"
 
 "@josebarrios/ui-organization-card@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.npmjs.org/@josebarrios/ui-organization-card/-/ui-organization-card-0.2.6.tgz#ac1bc66febf5c6780fad0bd7feba543f48ff2544"
+  version "0.2.8"
+  resolved "https://registry.npmjs.org/@josebarrios/ui-organization-card/-/ui-organization-card-0.2.8.tgz#f18f0e597df717de48006ba114efc38c811d6823"
   dependencies:
     "@josebarrios/organization" "^1.1.7"
     "@josebarrios/postal-address" "^0.1.7"
@@ -450,8 +455,8 @@ cli-cursor@^2.1.0:
     restore-cursor "^2.0.0"
 
 cli-width@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/cli-width/-/cli-width-2.1.0.tgz#b234ca209b29ef66fc518d9b98d5847b00edf00a"
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -743,8 +748,8 @@ error-ex@^1.2.0:
     is-arrayish "^0.2.1"
 
 es5-ext@^0.10.14, es5-ext@^0.10.9, es5-ext@~0.10.14:
-  version "0.10.29"
-  resolved "https://registry.npmjs.org/es5-ext/-/es5-ext-0.10.29.tgz#768eb2dfc4957bcf35fa0568f193ab71ede53fd8"
+  version "0.10.30"
+  resolved "https://registry.npmjs.org/es5-ext/-/es5-ext-0.10.30.tgz#7141a16836697dbabfaaaeee41495ce29f52c939"
   dependencies:
     es6-iterator "2"
     es6-symbol "~3.1"
