@@ -5,8 +5,8 @@ class UIAddressInput extends HTMLElement{
 
 	static get observedAttributes(){ return ['value', 'placeholder']; }
 
-  constructor(model){
-    super();
+	constructor(model){
+		super();
 		this.model = new PostalAddress();
 		const view = document.importNode(uiAddressInputTemplate.content, true);
 		//LIGHT DOM
@@ -17,16 +17,16 @@ class UIAddressInput extends HTMLElement{
 		this.connected = false;
 	}
 
- connectedCallback() {
-	 this.connected = true;
-	 this.$input = this.querySelector('input');
-	 //SHADOW ROOT
-	 //this.$input = this.shadowRoot.querySelector('input');
-	 this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
-	 // When the user selects an address from the dropdown, populate the address fields in the form.
-	 this.autocomplete.addListener('place_changed', e=> {this.setAddress()});
-	 this.$input.addEventListener('focus', e => {this.geolocate(e)});
-  }
+	connectedCallback() {
+		this.connected = true;
+		this.$input = this.querySelector('input');
+		//SHADOW ROOT
+		//this.$input = this.shadowRoot.querySelector('input');
+		this.autocomplete = new google.maps.places.Autocomplete( (this.$input), {types: ['geocode']});
+		// When the user selects an address from the dropdown, populate the address fields in the form.
+		this.autocomplete.addListener('place_changed', e=> {this.setAddress()});
+		this.$input.addEventListener('focus', e => {this.geolocate(e)});
+	}
 
 	// Bias the autocomplete object to the user's geographical location,
 	// as supplied by the browser's 'navigator.geolocation' object.
@@ -64,7 +64,7 @@ class UIAddressInput extends HTMLElement{
 		this.value = addressModel;
 	}
 
-  attributeChangedCallback(attrName, oldVal, newVal) {
+	attributeChangedCallback(attrName, oldVal, newVal) {
 		switch(attrName){
 			case 'value':
 				let checkAPI = () => {

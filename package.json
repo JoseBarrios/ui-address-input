@@ -1,11 +1,11 @@
 {
-  "name": "@josebarrios/ui-address-input",
-  "version": "0.1.14",
+  "name": "ui-address-input",
+  "version": "0.1.0",
   "description": "A custom element for address inputs",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/yarn/bin/yarn upgrade; ./node_modules/webpack/bin/webpack.js",
-    "test": "./node_modules/http-server/bin/http-server"
+    "build": "npm upgrade; ./node_modules/webpack/bin/webpack.js",
+    "test": "npm run-script build; ./node_modules/http-server/bin/http-server"
   },
   "repository": {
     "type": "git",
@@ -24,18 +24,11 @@
   },
   "homepage": "https://github.com/JoseBarrios/ui-address-input#readme",
   "devDependencies": {
-    "@josebarrios/ui-array-input": "^0.1.29",
-    "@josebarrios/ui-job-posting": "^0.1.51",
-    "@josebarrios/ui-job-posting-form": "^0.1.1",
-    "@josebarrios/ui-organization-card": "^0.2.6",
     "http-server": "^0.10.0",
     "mocha": "^3.4.2",
-    "webpack": "^3.3.0",
-    "yarn": "^0.27.5"
+    "webpack": "^3.3.0"
   },
   "dependencies": {
-    "@josebarrios/job-posting": "^0.2.8",
-    "@josebarrios/postal-address": "^0.1.7",
-    "@josebarrios/ui-job-posting-card": "^0.1.19"
+    "dc-postal-address": "^0.1.0"
   }
 }
